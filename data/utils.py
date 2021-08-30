@@ -1,9 +1,7 @@
 from skmultilearn.dataset import load_dataset
 from skmultilearn.dataset import available_data_sets
 import numpy as np
-import pandas as pd
 import os
-import csv
 
 def read_data(d_name, d_path = None): 
     if d_path == None: 
@@ -16,7 +14,6 @@ def read_data(d_name, d_path = None):
 
     if not (os.path.isdir(d_path)):
         raise ValueError('data directory {} not found'.format(d_path))
-    print(d_path)
     X_train_file = d_path  + d_name + '\\' + 'train' + '.csv'
     y_train_file = d_path  +d_name + '\\'+ 'train_labels' + '.csv'
     X_test_file = d_path  +d_name + '\\'+ 'test' + '.csv'
