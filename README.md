@@ -1,6 +1,6 @@
 ## Python-Based Information Theoretic Multi-Label Feature Selection (PyIT-MLFS) Library 
 
-#### Dependencies and Installation
+### Dependencies and Installation
 * python >= 3.8
 * numpy
 * pyitlib
@@ -28,4 +28,5 @@ conda install -c conda-forge numpy
 pip install tqdm
 ```
 
+### Get Started
 
