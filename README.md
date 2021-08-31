@@ -54,5 +54,4 @@ For example the following command ranks the features of 'emotions' and 'birds' d
 
         python PyIT-MLFS.py   --datasets   'emotions', 'birds'   --fs-methods 'LRFS', 'PPT_MI'
 
-Check out the results in 
-        ./results/SelectedSubsets/ 
+Check out the results in    ``` ./results/SelectedSubsets/ ```
