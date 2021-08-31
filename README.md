@@ -62,10 +62,17 @@ In addition, use the following command to select a subset of ```20``` top featur
 
 
 #### Your Own Dataset
-Put your dataset into data folder. The folder structure should follow the format:
+1. Put your datasetس into data folder. The folder structure for each dataset should follow the format:
 
         -YourDataset
         |--- train.csv
         |--- train_labels.csv
         |--- test.csv
         |--- test_labels.csv
+
+2. Run the following command to rank features of a dataset from the mulan repository:
+
+        python PyIT-MLFS.py  --data-path 'data\'  --datasets   d1, d2, ..., dn   --fs-methods a1, a2, ..., am
+
+
+As an example, download the ``` emotions ``` dataset through this [link](https://github.com/Sadegh28/PyIT-MLFS/raw/master/data/emotions/emotions.rar)
