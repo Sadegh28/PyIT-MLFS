@@ -32,11 +32,11 @@ pip install tqdm
 
 #### Mulan Datasets
 Use the following command to rank features of a dataset from the mulan repository:
-```
-python PyIT-MLFS.py   --datasets   d1, d2, ..., dn   --fs-methods a1, a2, ..., am
+
+        python PyIT-MLFS.py   --datasets   d1, d2, ..., dn   --fs-methods a1, a2, ..., am
 
 
-```
+
 Each di must be a mulan dataset: 
 
       
@@ -50,3 +50,9 @@ and each ai must be a multi-label feature selection method supportd by PyIT-MLFS
         {'LRFS', 'PPT_MI', 'IGMF', 'PMU', 'D2F', 'SCLS', 'MDMR', 'LSMFS', 'MLSMFS' }
         
 
+For example the following command ranks the features of 'emotions' and 'birds' datasets using 'LRFS' and 'PPT_MI' methods: 
+
+        python PyIT-MLFS.py   --datasets   'emotions', 'birds'   --fs-methods 'LRFS', 'PPT_MI'
+
+Check out the results in 
+        ./results/SelectedSubsets/ 
