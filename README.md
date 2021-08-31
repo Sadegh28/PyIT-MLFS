@@ -56,6 +56,6 @@ For example the following command ranks the features of ```'emotions'``` and ```
 
 Check out the results in    ``` ./results/SelectedSubsets/ ```
 
-In addition, use the following command to select a subset of ```K``` top features (instead of ranking the entire feature space)
+In addition, use the following command to select a subset of ```K``` top features (instead of ranking the entire feature space):
 
-        python PyIT-MLFS.py   --datasets   d1, d2, ..., dn   --fs-methods a1, a2, ..., am   --selection-type 'fixed-num' --num-of-features K
+        python PyIT-MLFS.py   --datasets   'emotions', 'birds'   --fs-methods 'LRFS', 'PPT_MI'   --selection-type 'fixed-num' --num-of-features K
