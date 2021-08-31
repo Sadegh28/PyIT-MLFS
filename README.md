@@ -35,8 +35,8 @@ Use the following command to rank features of a dataset from the mulan repositor
 ```
 python PyIT-MLFS.py   --datasets   d1, d2, ..., dn   --fs-methods a1, a2, ..., am
 
+
+```
 each di must be a mulan dataset ('Corel5k', 'bibtex', 'birds', 'delicious', 'emotions',
         'enron', 'genbase', 'mediamill', 'medical', 'rcv1subset1', 'rcv1subset2', 'rcv1subset3',
         'rcv1subset4', 'rcv1subset5', 'scene', 'tmc2007_500', 'yeast')
-```
-
