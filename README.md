@@ -87,3 +87,9 @@ Now you can run the following commands for feature ranking and selection, respec
 
         python PyIT-MLFS.py  --data-path 'data\'  --datasets   'emotions'   --fs-methods 'LRFS', 'PPT_MI' 
         python PyIT-MLFS.py  --data-path 'data\'  --datasets   'emotions'   --fs-methods 'LRFS', 'PPT_MI' --selection-type 'fixed-num' --num-of-features 20
+
+
+
+#### pre_eval and post_eval options 
+
+You can use ``` 'pre_eval' ``` and  ``` 'post_eval' ``` modes to calculate information theoretic measures between variables. In  ``` 'pre_eval' ``` mode, all required calculations are performed before the feature selection process. But in the case of ``` 'post_eval' ```, the measures are calculated on demand in the feature selection process. In general, ``` 'pre_eval' ``` mode runs much faster than ``` 'post_eval' ``` unless you want to select a very small number of features (say 5).
