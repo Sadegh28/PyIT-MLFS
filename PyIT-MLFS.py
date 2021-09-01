@@ -6,7 +6,7 @@ import argparse
 from tqdm import tqdm
 import os
 import time
-from data.utils import read_data
+from data.utils import read_data, classify
 
 
 
@@ -20,6 +20,8 @@ if __name__ == '__main__':
     parser.add_argument('--selection-type', type=str, required=False, default='rank')
     parser.add_argument('--num-of-features', type=int, required=False, default=10)
     parser.add_argument('--eval-mode', type=str, default='pre_eval')
+    parser.add_argument('--classifiers', type=str, nargs='+', required=False, default=None)
+    parser.add_argument('--metrics', type=str, nargs='+', required=False, default='hamming loss')
 
     args = parser.parse_args() 
     
@@ -62,6 +64,30 @@ if __name__ == '__main__':
             dir_name = args.output_path + r'\RunningTimes'
             filename = dir_name + r'\\' + method + '_'+ d + '.csv'
             np.savetxt(filename, [end-start], fmt = '%d')
+
+            if args.classifiers != None:
+                dir_name = args.output_path + '\\' + "Accuracies"
+                if not (os.path.isdir(dir_name)):
+                    os.mkdir(dir_name)  
+
+                for c in args.classifiers:
+                    with tqdm(total=len(rank), ncols=80) as t:
+                        t.set_description('{} Classification in Progress '.format(c))
+                        for k in range(1, len(rank)+1):
+                            res = classify(X_train[:,rank[:k]], y_train, X_test[:,rank[:k]], y_test, c, args.metrics)
+                            
+                            for m in args.metrics: 
+                                filename = dir_name + "\\" + d + '_'+ method + '_' +c + '_'+m+'.csv'
+                                if k == 1:
+                                    np.savetxt(filename, [res[m]])
+                                else: 
+                                    with open(filename, "ab") as f:
+                                        np.savetxt(f, [res[m]])
+
+
+                            t.update(1)
+
+                    
 
                  
 

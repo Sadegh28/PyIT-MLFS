@@ -103,3 +103,13 @@ Use the following command to to get the accuracy of the selected subsets using d
 
         python PyIT-MLFS.py   --datasets   d1, d2, ..., dn   --fs-methods a1, a2, ..., am \
                               --classifiers  c1, c2, ..., ck  --metrics  m1, m2, ..., mt
+
+For example the following command ranks the features of ```'emotions'``` and ```'birds' ```datasets using ```'LRFS'``` and ```'PPT_MI'``` methods, then classifies the datasets using ```'MLKNN'``` and ```'BinaryRelevance'``` classifiers and finally evaluates the classfication results using four metrics namely ```'hamming loss'```, ```'label ranking loss'```, ```'coverage error'```, and ```'average precision score'```
+
+        python PyIT-MLFS.py   --datasets   'emotions', 'birds' \
+                              --fs-methods 'LRFS', 'PPT_MI' \
+                              --classifiers  "MLKNN", "BinaryRelevance" \
+                              --metrics  'hamming loss', 'label ranking loss', 'coverage error', 'average precision score'
+
+Check out the results in    ``` ./results/Accuracies/ ```
+
