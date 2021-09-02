@@ -6,6 +6,7 @@ from classes.scls import scls
 from classes.mdmr import mdmr
 from classes.lsmfs  import  lsmfs
 from classes.mlsmfs import mlsmfs
+from classes.atr import atr
 
 
 def LRFS(): 
@@ -31,3 +32,6 @@ def LSMFS():
 
 def MLSMFS(): 
     return mlsmfs()
+
+def ATR(): 
+    return atr()

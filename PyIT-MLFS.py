@@ -1,6 +1,6 @@
 from sklearn.preprocessing import KBinsDiscretizer
 import numpy as np
-from AlgorithmAdaptation import MDMR,  LRFS, IGMF, MLSMFS, PMU, D2F,SCLS, LSMFS, MLSMFS 
+from AlgorithmAdaptation import MDMR,  LRFS, IGMF, MLSMFS, PMU, D2F,SCLS, LSMFS, MLSMFS, ATR
 from ProblemTransformation import PPT_MI
 import argparse
 from tqdm import tqdm
@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
     method_dispatcher = {'LRFS':LRFS, 'PPT_MI':PPT_MI,\
          'IGMF':IGMF, 'PMU':PMU, 'D2F':D2F, 'SCLS':SCLS,\
-              'MDMR':MDMR, 'LSMFS':LSMFS, 'MLSMFS':MLSMFS }
+              'MDMR':MDMR, 'LSMFS':LSMFS, 'MLSMFS':MLSMFS, 'ATR': ATR }
 
     for d in args.datasets: 
         X_train, y_train, X_test, y_test = read_data(d_name= d, d_path= args.data_path)
