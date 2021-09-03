@@ -2,6 +2,7 @@ import numpy as np
 from .utils import mi_pairwise as rel, mi_pairwise as red
 from .base import BaseFS
 from tqdm import tqdm
+
 class ppt_mi(BaseFS):
     """
     This class implements the PPT-MI algorithm proposed in 
@@ -72,21 +73,12 @@ class ppt_mi(BaseFS):
             X, y= self.__PPTprun(X,y,self.prune_threshold)
             y = y.reshape(-1,1)
             REL = rel(X, y.reshape(-1,1), message= 'Relevamce Matrix') 
-            RED = red(X, X, message='Redundancy Matrix')
-            
-            F = list(range(X.shape[1]))
-            S = []
-            k = 0 
             with tqdm(total=X.shape[1], ncols=80) as t:
                 t.set_description('Feature Selection in Progress ')
-                while k < X.shape[1]:
-                    J = [self.__J(f, S, REL, RED) for f in F]
-                    best = J.index(max(J))
-                    S.append(F[best])
-                    F.remove(F[best])
-                    k = k+1
-                    t.update(1)
-            return S
+                t.update(X.shape[1])
+
+            return (np.flip(np.argsort(np.array(REL).reshape(-1))))
+
 
 
     def __PPTprun(self, X, y, threshold = 6): 

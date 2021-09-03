@@ -47,7 +47,7 @@ Each ```di``` must be a mulan dataset:
 and each ```ai``` must be a multi-label feature selection method supportd by PyIT-MLFS library: 
         
         
-        {'LRFS', 'PPT_MI', 'IGMF', 'PMU', 'D2F', 'SCLS', 'MDMR', 'LSMFS', 'MLSMFS' }
+        {'LRFS', 'PPT_MI', 'IGMF', 'PMU', 'D2F', 'SCLS', 'MDMR', 'LSMFS', 'MLSMFS', 'ATR' }
         
 
 For example the following command ranks the features of ```'emotions'``` and ```'birds' ```datasets using ```'LRFS'``` and ```'PPT_MI'``` methods: 

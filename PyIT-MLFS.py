@@ -7,6 +7,7 @@ from tqdm import tqdm
 import os
 import time
 from data.utils import read_data, classify
+from pyitlib import discrete_random_variable as drv
 
 
 
@@ -39,7 +40,6 @@ if __name__ == '__main__':
         X_train = est.transform(X_train).astype(int)
         X_test = est.transform(X_test).astype(int)
         y_train = y_train.astype(int) 
-            
         
 
             
