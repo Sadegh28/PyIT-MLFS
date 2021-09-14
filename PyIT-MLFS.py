@@ -54,30 +54,36 @@ if __name__ == '__main__':
                 rank = fs.select(X_train, y_train,args.num_of_features, mode=args.eval_mode)
             end = time.time()
             # writing the selected subsets into file
-            dir_name = args.output_path + r'\SelectedSubsets'
+            dir_name = args.output_path + r'\SelectedSubsets' + r'\{}'.format(d)
             if not (os.path.isdir(dir_name)):
                 os.mkdir(dir_name) 
             filename = dir_name + r'\\' + method + '_'+ d + '.csv'
             np.savetxt(filename, rank, delimiter=',', fmt = '%d')
 
             # writing the running time into file
-            dir_name = args.output_path + r'\RunningTimes'
+            dir_name = args.output_path + r'\RunningTimes' + r'\{}'.format(d)
+            if not (os.path.isdir(dir_name)):
+                os.mkdir(dir_name) 
             filename = dir_name + r'\\' + method + '_'+ d + '.csv'
             np.savetxt(filename, [end-start], fmt = '%d')
 
             if args.classifiers != None:
-                dir_name = args.output_path + '\\' + "Accuracies"
-                if not (os.path.isdir(dir_name)):
-                    os.mkdir(dir_name)  
+                 
 
                 for c in args.classifiers:
+                    dir_name = args.output_path + '\\' + "Accuracies" + r'\{}'.format(d) 
+                    if not (os.path.isdir(dir_name)):
+                        os.mkdir(dir_name) 
+                    dir_name += r'\{}'.format(c)
+                    if not (os.path.isdir(dir_name)):
+                        os.mkdir(dir_name) 
                     with tqdm(total=len(rank), ncols=80) as t:
                         t.set_description('{} Classification in Progress '.format(c))
                         for k in range(1, len(rank)+1):
                             res = classify(X_train[:,rank[:k]], y_train, X_test[:,rank[:k]], y_test, c, args.metrics)
                             
                             for m in args.metrics: 
-                                filename = dir_name + "\\" + d + '_'+ method + '_' +c + '_'+m+'.csv'
+                                filename = dir_name +  "\\" +  method +  '_'+m+'.csv'
                                 if k == 1:
                                     np.savetxt(filename, [res[m]])
                                 else: 
