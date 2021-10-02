@@ -62,25 +62,36 @@ if __name__ == '__main__':
             elif args.selection_type == 'fixed_num':
                 rank = fs.select(X_train, y_train,args.num_of_features, mode=args.eval_mode)
             end = time.time()
+            
+            
             # writing the selected subsets into file
-            dir_name = args.output_path + r'\SelectedSubsets' + r'\{}'.format(d)
+            dir_name = args.output_path + r'\SelectedSubsets' 
             if not (os.path.isdir(dir_name)):
                 os.mkdir(dir_name) 
-            filename = dir_name + r'\\' + method + '_'+ d + '.csv'
+            dir_name += r'\{}'.format(d)
+            if not (os.path.isdir(dir_name)):
+                os.mkdir(dir_name)
+            filename = dir_name + r'\\' + method + '.csv'
             np.savetxt(filename, rank, delimiter=',', fmt = '%d')
 
             # writing the running time into file
-            dir_name = args.output_path + r'\RunningTimes' + r'\{}'.format(d)
+            dir_name = args.output_path + r'\RunningTimes' 
+            if not (os.path.isdir(dir_name)):
+                os.mkdir(dir_name)
+            dir_name += r'\{}'.format(d)
             if not (os.path.isdir(dir_name)):
                 os.mkdir(dir_name) 
-            filename = dir_name + r'\\' + method + '_'+ d + '.csv'
+            filename = dir_name + r'\\' + method +  '.txt'
             np.savetxt(filename, [end-start], fmt = '%d')
 
             if args.classifiers != None:
                  
 
                 for c in args.classifiers:
-                    dir_name = args.output_path + '\\' + "Accuracies" + r'\{}'.format(d) 
+                    dir_name = args.output_path + '\\' + "Accuracies" 
+                    if not (os.path.isdir(dir_name)):
+                        os.mkdir(dir_name)
+                    dir_name += r'\{}'.format(d) 
                     if not (os.path.isdir(dir_name)):
                         os.mkdir(dir_name) 
                     dir_name += r'\{}'.format(c)
