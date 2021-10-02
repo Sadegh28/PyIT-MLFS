@@ -1,6 +1,6 @@
 from tqdm import tqdm
 from .base import BaseFS
-from .utils import mi_pairwise as rel, mi_multi as rel_multivar, mi_multi as red
+from .IM import mi_pairwise as rel, mi_multi as rel_multivar, mi_multi as red
 class pmu(BaseFS): 
     """
     This class implements the PMU algorithm proposed in 

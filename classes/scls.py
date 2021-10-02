@@ -1,8 +1,7 @@
 from tqdm import tqdm
 import numpy as np
-from .utils import mi_pairwise as rel, mi_pairwise as red, entropy as h
+from .IM import mi_pairwise as rel, mi_pairwise as red, entropy as h
 from .base import BaseFS
-from pyitlib import discrete_random_variable as drv
 class scls(BaseFS): 
     """
     This class implements the SCLS algorithm proposed in 

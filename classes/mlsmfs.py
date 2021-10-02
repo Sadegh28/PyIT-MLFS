@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import numpy as np
 import math
-from .utils import mi_pairwise as rel, mi_pairwise as red, mi_multi as sup
+from .IM import mi_pairwise as rel, mi_pairwise as red, mi_conditioanl as sup
 from .base import BaseFS
 class mlsmfs(BaseFS): 
     """

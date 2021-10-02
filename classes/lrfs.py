@@ -2,7 +2,7 @@
 from tqdm import tqdm
 import numpy as np
 from .base import BaseFS
-from .utils import mi_conditioanl as rel_cond, mi_pairwise as red_uncond
+from .IM import mi_conditioanl as rel_cond, mi_pairwise as red_uncond
 
 class lrfs(BaseFS): 
     """

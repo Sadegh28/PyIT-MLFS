@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import numpy as np
 from .base import BaseFS
-from .utils import mi_pairwise as rel, mi_multi as red
+from .IM import mi_pairwise as rel, mi_multi as red
 class mdmr(BaseFS): 
     """
     This class implements the MDMR algorithm proposed in 

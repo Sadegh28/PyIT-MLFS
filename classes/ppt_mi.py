@@ -1,5 +1,5 @@
 import numpy as np
-from .utils import mi_pairwise as rel, mi_pairwise as red
+from .IM import mi_pairwise as rel, mi_pairwise as red
 from .base import BaseFS
 from tqdm import tqdm
 

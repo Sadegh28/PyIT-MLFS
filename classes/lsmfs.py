@@ -1,6 +1,6 @@
 from tqdm import tqdm
 import numpy as np
-from .utils import mi_pairwise as rel, mi_pairwise as red, mi_multi as sup
+from .IM import mi_pairwise as rel, mi_pairwise as red, mi_multi as sup
 from .base import BaseFS
 
 class lsmfs(BaseFS): 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from tqdm import tqdm
 import numpy as np
-from .utils import entropy_joint as H
+from .IM import entropy_joint as H
 class igmf: 
     """
     This class implements the IGMF algorithm proposed in 

@@ -47,7 +47,7 @@ Each ```di``` must be a mulan dataset:
 and each ```ai``` must be a multi-label feature selection method supportd by PyIT-MLFS library: 
         
         
-        {'LRFS', 'PPT_MI', 'IGMF', 'PMU', 'D2F', 'SCLS', 'MDMR', 'LSMFS', 'MLSMFS', 'ATR' }
+        {'LRFS', 'PPT_MI', 'IGMF', 'PMU', 'D2F', 'SCLS', 'MDMR', 'LSMFS', 'MLSMFS' }
         
 
 For example the following command ranks the features of ```'emotions'``` and ```'birds' ```datasets using ```'LRFS'``` and ```'PPT_MI'``` methods: 
@@ -62,7 +62,7 @@ In addition, use the following command to select a subset of ```20``` top featur
 
 
 #### Your Own Dataset
-1. Put your datasets into  ``` ./data ``` folder. The folder structure for each dataset should follow the format:
+1. Put your datasets into  ``` ./datasets ``` folder. f the data is already splitted into train/test, then the folder structure for each dataset should follow the format:
 
         -YourDataset
         |--- train.csv
@@ -70,12 +70,18 @@ In addition, use the following command to select a subset of ```20``` top featur
         |--- test.csv
         |--- test_labels.csv
 
+otherwise it should follow the format: 
+
+        -YourDataset
+        |--- X.csv
+        |--- y.csv
+
 2. Run the following command to rank features of a dataset from the mulan repository:
 
         python PyIT-MLFS.py  --data-path 'data\'  --datasets   d1, d2, ..., dn   --fs-methods a1, a2, ..., am
 
 
-As an example, download the ``` emotions ``` dataset through this [link](https://github.com/Sadegh28/PyIT-MLFS/raw/master/data/emotions/emotions.rar). After extracting into ``` ./data ``` folder, you should see the follwing structure: 
+As an example, download the ``` emotions ``` dataset through this [link](https://github.com/Sadegh28/PyIT-MLFS/raw/master/data/emotions/emotions.rar). After extracting into ``` ./datasets ``` folder, you should see the follwing structure: 
 
         -emotions
         |--- train.csv
@@ -85,8 +91,8 @@ As an example, download the ``` emotions ``` dataset through this [link](https:/
 
 Now you can run the following commands for feature ranking and selection, respectively: 
 
-        python PyIT-MLFS.py  --data-path 'data\'  --datasets   'emotions'   --fs-methods 'LRFS', 'PPT_MI' 
-        python PyIT-MLFS.py  --data-path 'data\'  --datasets   'emotions'   --fs-methods 'LRFS', 'PPT_MI' --selection-type 'fixed-num' --num-of-features 20
+        python PyIT-MLFS.py  --data-path 'datasets\'  --datasets   'emotions'   --fs-methods 'LRFS', 'PPT_MI' 
+        python PyIT-MLFS.py  --data-path 'datasets\'  --datasets   'emotions'   --fs-methods 'LRFS', 'PPT_MI' --selection-type 'fixed-num' --num-of-features 20
 
 
 
@@ -94,7 +100,7 @@ Now you can run the following commands for feature ranking and selection, respec
 
 You can use ``` 'pre_eval' ``` and  ``` 'post_eval' ``` modes to calculate information theoretic measures between variables. In  ``` 'pre_eval' ``` mode, all required calculations are performed before the feature selection process. But in the case of ``` 'post_eval' ```, the measures are calculated on demand in the feature selection process. In general, ``` 'pre_eval' ``` mode runs much faster than ``` 'post_eval' ``` unless you want to select a very small number of features (say 5). ``` 'pre_eval' ``` mode is the default, and if you want to use ``` 'post_eval' ``` mode, run the following command:
 
-        python PyIT-MLFS.py  --data-path 'data\'  --datasets   'emotions'   --fs-methods 'LRFS', 'PPT_MI' --selection-type 'fixed-num' --num-of-features 5  --eval-mode 'post_eval'
+        python PyIT-MLFS.py  --data-path 'datasets\'  --datasets   'emotions'   --fs-methods 'LRFS', 'PPT_MI' --selection-type 'fixed-num' --num-of-features 5  --eval-mode 'post_eval'
 
 
 #### Evaluation

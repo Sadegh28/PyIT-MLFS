@@ -1,13 +1,21 @@
 from sklearn.preprocessing import KBinsDiscretizer
 import numpy as np
-from AlgorithmAdaptation import MDMR,  LRFS, IGMF, MLSMFS, PMU, D2F,SCLS, LSMFS, MLSMFS, ATR
-from ProblemTransformation import PPT_MI
+from classes.lrfs import lrfs as LRFS
+from classes.igmf import igmf as IGMF
+from classes.pmu import pmu as PMU
+from classes.d2f import d2f as D2F
+from classes.scls import scls as SCLS
+from classes.mdmr import mdmr as MDMR
+from classes.lsmfs  import  lsmfs as LSMFS
+from classes.mlsmfs import mlsmfs as MLSMFS
+from classes.ppt_mi import ppt_mi as PPT_MI
 import argparse
 from tqdm import tqdm
 import os
 import time
-from data.utils import read_data, classify
-from pyitlib import discrete_random_variable as drv
+from evaluation import classify
+from data import read_data
+
 
 
 
@@ -19,7 +27,7 @@ if __name__ == '__main__':
     parser.add_argument('--fs-methods', type=str, nargs='+', required=True)
     parser.add_argument('--output-path', type=str, required='False', default='results')
     parser.add_argument('--selection-type', type=str, required=False, default='rank')
-    parser.add_argument('--num-of-features', type=int, required=False, default=10)
+    parser.add_argument('--num-of-features', type=int, required=False, default=50)
     parser.add_argument('--eval-mode', type=str, default='pre_eval')
     parser.add_argument('--classifiers', type=str, nargs='+', required=False, default=None)
     parser.add_argument('--metrics', type=str, nargs='+', required=False, default='hamming loss')
@@ -31,7 +39,7 @@ if __name__ == '__main__':
 
     method_dispatcher = {'LRFS':LRFS, 'PPT_MI':PPT_MI,\
          'IGMF':IGMF, 'PMU':PMU, 'D2F':D2F, 'SCLS':SCLS,\
-              'MDMR':MDMR, 'LSMFS':LSMFS, 'MLSMFS':MLSMFS, 'ATR': ATR }
+              'MDMR':MDMR, 'LSMFS':LSMFS, 'MLSMFS':MLSMFS }
 
     for d in args.datasets: 
         X_train, y_train, X_test, y_test = read_data(d_name= d, d_path= args.data_path)
@@ -40,6 +48,7 @@ if __name__ == '__main__':
         X_train = est.transform(X_train).astype(int)
         X_test = est.transform(X_test).astype(int)
         y_train = y_train.astype(int) 
+
         
 
             
@@ -83,7 +92,10 @@ if __name__ == '__main__':
                             res = classify(X_train[:,rank[:k]], y_train, X_test[:,rank[:k]], y_test, c, args.metrics)
                             
                             for m in args.metrics: 
-                                filename = dir_name +  "\\" +  method +  '_'+m+'.csv'
+                                dir_name_m = dir_name +r'\{}'.format(m)
+                                if not (os.path.isdir(dir_name_m)):
+                                    os.mkdir(dir_name_m) 
+                                filename = dir_name_m +  "\\" +  method +  '.csv'
                                 if k == 1:
                                     np.savetxt(filename, [res[m]])
                                 else: 
